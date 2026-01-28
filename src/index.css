@@ -21,7 +21,33 @@ body {
   font-family: sans-serif;
 }
 
-.selected {
-  background-color: #3cb371;
-  color: #000000;
+.boxed {
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.card_container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: calc((100% - 2rem) / 3);
+  background-color: #95999b;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.card h2 {
+  font-size: large;
+}
+
+.card img {
+  width: 100%;
+  object-fit: cover;
+  object-position: top;
+  aspect-ratio: 1/1.5;
+  overflow: hidden;
 }

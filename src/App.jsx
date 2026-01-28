@@ -16,12 +16,22 @@ function App() {
   useEffect(getData, []);
   return (
     <>
-      <h1>Hello React API</h1>
-      <ul>
-        {actors.map((actor) => (
-          <li key={actor.id}><h1>{actor.name}</h1></li>
-        ))}
-      </ul>
+      <div className="boxed ">
+        <h1>Hello React API</h1>
+        <div className="card_container">
+          {actors.map((actor) => (
+            <div className='card' key={actor.id}>
+              <h2>{actor.name}</h2>
+              <img src={actor.image} alt="" />
+              <p>{actor.birth_year}</p>
+              <p>{actor.nationality}</p>
+              <span>{actor.biography}</span>
+              <h5>{actor.awards}</h5>
+
+            </div>
+          ))}
+        </div>
+      </div>
     </>
   )
 }
