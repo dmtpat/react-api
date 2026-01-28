@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
 import axios from "axios";
 
+import Card from "./Card.components"
+
 function App() {
-  const [actors, setActors] = useState(0);
+  const [actors, setActors] = useState([]);
   const listaAttori = "https://lanciweb.github.io/demo/api/actors/";
   const listaAttrici = "https://lanciweb.github.io/demo/api/actresses/";
   const [lists, setLists] = useState(listaAttori);
+  const [listShowed, setListShowed] = useState(1);
 
   function getData(_list) {
     axios.get(_list).then((results) => {
@@ -16,27 +19,30 @@ function App() {
   }
 
   useEffect(() => (getData(lists)), [lists]);
+
+
   return (
     <>
       <div className="boxed ">
         <h1>Hello React API</h1>
-        <button onClick={() => (setLists(listaAttori))}>Carica Attori</button>
-        <button onClick={() => (setLists(listaAttrici))}>Carica Attrici</button>
+        <button onClick={() => { setLists(listaAttori); setListShowed(1) }}>Carica Attori</button>
+        <button onClick={() => { setLists(listaAttrici); setListShowed(1) }}>Carica Attrici</button >
+        <button onClick={() => { setLists(listaAttrici); setListShowed(2) }}> Carica Attori e Attrici</button >
         <div className="card_container">
           {actors.map((actor) => {
             return (
-              <div className='card' key={actor.id}>
-                <h2>{actor.name}</h2>
-                <img src={actor.image} alt="" />
-                <p>{actor.birth_year}</p>
-                <p>{actor.nationality}</p>
-                <span>{actor.biography}</span>
-                <h5>{actor.awards}</h5>
-              </div>
+              <Card actor={actor} />
             )
           })}
         </div>
-      </div>
+        <div className="card_container">
+          {actors.map((actor) => {
+            return (
+              <Card actor={actor} />
+            )
+          })}
+        </div>
+      </div >
     </>
   )
 }

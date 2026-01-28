@@ -47,7 +47,7 @@ body {
 .card img {
   width: 100%;
   object-fit: cover;
-  object-position: top;
+  object-position: top left;
   aspect-ratio: 1/1.5;
   overflow: hidden;
 }
