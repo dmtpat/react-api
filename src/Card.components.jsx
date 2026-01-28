@@ -4,12 +4,13 @@ function Card(props) {
     const actor = props.actor;
     return (
         <div className='card' key={actor.id}>
-            <h2>{actor.name}</h2>
+            <h2><strong>{actor.name}</strong> <span className={`date  ${actor.death_year ? "dead" : "alive"}`}>({actor.birth_year} - {actor.death_year ? actor.death_year : "Alive"})</span></h2>
             <img src={actor.image} alt="" />
-            <p>{actor.birth_year}</p>
-            <p>{actor.nationality}</p>
-            <span>{actor.biography}</span>
-            <h5>{actor.awards}</h5>
+
+            <p><u>Nationality</u>: <strong>{actor.nationality}</strong></p>
+            <p><u>Biography</u>:</p>
+            <div className="bio">{actor.biography}</div>
+            <h5><u>Awards</u>: {actor.awards.join(" - ")}</h5>
         </div>
     )
 }

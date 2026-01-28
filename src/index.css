@@ -33,21 +33,54 @@ body {
 }
 
 .card {
-  width: calc((100% - 2rem) / 3);
-  background-color: #95999b;
+  width: calc((100% - 3rem) / 4);
+  background-color: #595c5e;
   border-radius: 1rem;
   padding: 1.5rem;
   margin-bottom: 1rem;
 }
 
 .card h2 {
-  font-size: large;
+  width: 100%;
+  font-size: larger;
+  position: relative;
+
+}
+
+.card h2 .date {
+  position: absolute;
+  /* transform: translateX(-50%); */
+  right: 0;
+  font-size: medium;
+}
+
+.card h2 strong {
+  position: absolute;
+  left: 0;
+  width: 70%;
+  white-space: pre-wrap;
 }
 
 .card img {
   width: 100%;
+  margin-top: 3.5rem;
   object-fit: cover;
   object-position: top left;
   aspect-ratio: 1/1.5;
   overflow: hidden;
+}
+
+.dead {
+  color: #800606;
+}
+
+.alive {
+  color: #82c060;
+}
+
+.card .bio {
+  height: 4.5rem;
+  overflow: scroll;
+  border-style: double;
+  border-color: #3b3d3f;
 }
