@@ -31,16 +31,16 @@ function App() {
   function twoShowed() {
     return (
       <>
-        <CardContainer actors={actors} lists={true} />
-        <CardContainer actors={actresses} lists={true} />
+        <CardContainer actors={actors} lists={true} tipe={"male"} />
+        <CardContainer actors={actresses} lists={true} tipe={"female"} />
       </>)
   }
 
   function actorActresses(_list) {
     if (_list == 1) {
-      return <CardContainer actors={actors} lists={false} />
+      return <CardContainer actors={actors} lists={false} tipe={"male"} />
     } else {
-      return <CardContainer actors={actresses} lists={false} />
+      return <CardContainer actors={actresses} lists={false} tipe={"female"} />
     }
   }
 

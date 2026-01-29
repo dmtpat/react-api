@@ -3,6 +3,41 @@
 function Card(props) {
     const actor = props.actor;
     const lists = props.lists;
+    const tipe = props.tipe;
+
+    function checkTipe(_tipe) {
+        if (_tipe == "female") {
+            return (
+                <>
+                    <h5><u>Awards</u>: {actor.awards} </h5>
+                    <div>
+                        <u>Known for</u>
+                        <ul>
+                            {actor.most_famous_movies.map((movie, index) => (
+                                <li key={index}>{movie}</li>
+                            ))}
+                        </ul>
+                    </div>
+                </>
+            )
+        } else {
+            return (
+                <>
+                    <h5><u>Awards</u>: {actor.awards.join(" - ")} </h5>
+                    <div>
+                        <u>Known for</u>
+                        <ul>
+                            {actor.known_for.map((movie, index) => (
+                                <li key={index}>{movie}</li>
+                            ))}
+                        </ul>
+                    </div>
+                </>
+
+            )
+        }
+    }
+
     return (
         <div className={`card ${lists ? "little_card" : "big_card"}`} key={actor.id}>
             <h2><strong>{actor.name}</strong> <span className={`date  ${actor.death_year ? "dead" : "alive"}`}>({actor.birth_year} - {actor.death_year ? actor.death_year : "Alive"})</span></h2>
@@ -11,7 +46,7 @@ function Card(props) {
             <p><u>Nationality</u>: <strong>{actor.nationality}</strong></p>
             <p><u>Biography</u>:</p>
             <div className="bio">{actor.biography}</div>
-            <h5><u>Awards</u>: {actor.awards.join(" - ")} </h5>
+            {checkTipe(tipe)}
         </div>
     )
 }
