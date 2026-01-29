@@ -11,7 +11,7 @@ function Card(props) {
             <p><u>Nationality</u>: <strong>{actor.nationality}</strong></p>
             <p><u>Biography</u>:</p>
             <div className="bio">{actor.biography}</div>
-            <h5><u>Awards</u>: </h5>
+            <h5><u>Awards</u>: {actor.awards.join(" - ")} </h5>
         </div>
     )
 }
