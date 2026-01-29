@@ -1,46 +1,62 @@
 import { useState, useEffect } from 'react';
 import axios from "axios";
 
+import CardContainer from './CardContainer.components';
 import Card from "./Card.components"
 
 function App() {
   const [actors, setActors] = useState([]);
+  const [actresses, setActresses] = useState([]);
+  const [list, setList] = useState(1);
   const listaAttori = "https://lanciweb.github.io/demo/api/actors/";
   const listaAttrici = "https://lanciweb.github.io/demo/api/actresses/";
-  const [lists, setLists] = useState(listaAttori);
-  const [listShowed, setListShowed] = useState(1);
 
-  function getData(_list) {
-    axios.get(_list).then((results) => {
-      console.log("I dati sono stati richiesti");
-      setActors(results.data)
+  const [twoLists, setTwoLists] = useState(false);
+
+  function getData() {
+    axios.get(listaAttori).then((results) => {
+      console.log("I dati Attori");
+      setActors(results.data);
       console.log(actors);
-    }).catch(error => console.log(error.message))
+    }).catch(error => console.log(error.message));
+    axios.get(listaAttrici).then((results) => {
+      console.log("I dati Attrici");
+      setActresses(results.data);
+      console.log(actresses);
+    }).catch(error => console.log(error.message));
   }
 
-  useEffect(() => (getData(lists)), [lists]);
+  useEffect(getData, []);
 
+  function twoShowed() {
+    return (
+      <>
+        <CardContainer actors={actors} lists={true} />
+        <CardContainer actors={actresses} lists={true} />
+      </>)
+  }
+
+  function actorActresses(_list) {
+    if (_list == 1) {
+      return <CardContainer actors={actors} lists={false} />
+    } else {
+      return <CardContainer actors={actresses} lists={false} />
+    }
+  }
 
   return (
     <>
-      <div className="boxed ">
+      <div className="boxed">
         <h1>Hello React API</h1>
-        <button onClick={() => { setLists(listaAttori); setListShowed(1) }}>Carica Attori</button>
-        <button onClick={() => { setLists(listaAttrici); setListShowed(1) }}>Carica Attrici</button >
-        <button onClick={() => { setLists(listaAttrici); setListShowed(2) }}> Carica Attori e Attrici</button >
-        <div className="card_container">
-          {actors.map((actor) => {
-            return (
-              <Card actor={actor} />
-            )
-          })}
-        </div>
-        <div className="card_container">
-          {actors.map((actor) => {
-            return (
-              <Card actor={actor} />
-            )
-          })}
+        <button onClick={() => { setTwoLists(false); setList(1) }}>Carica Attori</button>
+        <button onClick={() => { setTwoLists(false); setList(2) }}>Carica Attrici</button >
+        <button onClick={() => { setTwoLists(true) }}> Carica Attori e Attrici</button >
+        <div className='flex'>
+
+          {
+            twoLists ? twoShowed() : actorActresses(list)
+          }
+
         </div>
       </div >
     </>

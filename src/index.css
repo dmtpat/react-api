@@ -26,18 +26,39 @@ body {
   margin: 0 auto;
 }
 
+.flex {
+  display: flex;
+  gap: 0.5rem;
+}
+
 .card_container {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
 
+.full_width {
+  width: 100%;
+}
+
+.half_width {
+  width: 50%;
+}
+
 .card {
-  width: calc((100% - 3rem) / 4);
+
   background-color: #595c5e;
   border-radius: 1rem;
   padding: 1.5rem;
   margin-bottom: 1rem;
+}
+
+.little_card {
+  width: calc((100% - 1rem) / 2);
+}
+
+.big_card {
+  width: calc((100% - 3rem) / 4);
 }
 
 .card h2 {
