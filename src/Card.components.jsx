@@ -25,7 +25,7 @@ function Card(props) {
                 <>
                     <h5><u>Awards</u>: {actor.awards.join(" - ")} </h5>
                     <div>
-                        <u>Known for</u>
+                        <u>Known for</u>:
                         <ul>
                             {actor.known_for.map((movie, index) => (
                                 <li key={index}>{movie}</li>
